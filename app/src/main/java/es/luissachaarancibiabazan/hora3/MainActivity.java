@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     AdminSqlite adminSqlite;
     RecyclerView recyclerView;
     AdapterHoras adapterHoras;
-    TextView txtHoras, txtFecha;
+    TextView txtHoras, txtFecha, txtMedia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.reciclerview);
         txtHoras = (TextView) findViewById(R.id.txtHoras);
         txtFecha = (TextView)findViewById(R.id.txtFecha);
+        txtMedia = (TextView)findViewById(R.id.txtMedia);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         adminSqlite = new AdminSqlite(this);
 
         setMainRecyclerView();
+        setMediaHoras();
 
     }
 
@@ -70,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            if (adminSqlite.deleteHoras() != 0){
+                Snackbar.make(getWindow().getDecorView().getRootView(), "Tabla Borrada", Snackbar.LENGTH_LONG)
+                        .show();
+                setMainRecyclerView();
+            }
             return true;
         }
 
@@ -86,9 +95,11 @@ public class MainActivity extends AppCompatActivity {
             while (c.moveToNext()) {
                 String horaString = c.getString(1);
                 String Fecha = c.getString(2);
+                String descripcion = c.getString(3);
                 hora = new Hora();
                 hora.setNumeroHoras(horaString);
                 hora.setFechaHora(Fecha);
+                hora.setDescripcion(descripcion);
                 horaList.add(hora);
 
             }
@@ -102,6 +113,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapterHoras);
+        adapterHoras.notifyDataSetChanged();
+    }
+
+    public void setMediaHoras(){
+        float mediaHoras;
+        mediaHoras = adminSqlite.getMediaHoras();
+        txtMedia.setText(String.valueOf(mediaHoras));
 
     }
 

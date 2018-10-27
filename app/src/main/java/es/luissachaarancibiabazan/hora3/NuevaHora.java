@@ -2,10 +2,12 @@ package es.luissachaarancibiabazan.hora3;
 
 import android.app.DatePickerDialog;
 import android.database.Cursor;
+import android.os.Build;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -17,10 +19,10 @@ import java.util.Calendar;
 
 public class NuevaHora extends AppCompatActivity {
 
-    EditText etHoras, etFechas;
+    EditText etHoras, etFechas, etDesc;
     Button btnGuardar;
     AdminSqlite adminSqlite;
-    String horaString, fechaString;
+    String horaString, fechaString, descString;
     DatePickerDialog datePickerDialog;
     int year, month, dayOfMonth;
     Calendar calendar;
@@ -32,6 +34,7 @@ public class NuevaHora extends AppCompatActivity {
 
         etFechas = (EditText)findViewById(R.id.etFechas);
         etHoras = (EditText)findViewById(R.id.etHoras);
+        etDesc = (EditText)findViewById(R.id.etDesc);
         btnGuardar = (Button)findViewById(R.id.btnGuardar);
 
         adminSqlite = new AdminSqlite(this);
@@ -55,6 +58,10 @@ public class NuevaHora extends AppCompatActivity {
             }
         });
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            etFechas.setShowSoftInputOnFocus(false);
+        }
+
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +70,9 @@ public class NuevaHora extends AppCompatActivity {
                     Toast.makeText(NuevaHora.this, "Rellena todos los campos", Toast.LENGTH_SHORT).show();
                 }else{
                     horaString = etHoras.getText().toString();
-                    adminSqlite.setNewHoras(horaString, fechaString);
+                    descString = etDesc.getText().toString();
+                    Toast.makeText(NuevaHora.this, "Horas: "+horaString+"\n fecha: "+fechaString+"\n descripcion: "+descString, Toast.LENGTH_SHORT).show();
+                    adminSqlite.setNewHoras(horaString, fechaString, descString);
                     finish();
                 }
             }

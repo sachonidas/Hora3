@@ -9,24 +9,17 @@ public class Hora  {
     protected int id;
     protected String numeroHoras;
     protected String fechaHora;
+    protected String descripcion;
 
     public int getId() {
         return id;
     }
 
-    public String getNumeroHoras() {
-        return numeroHoras;
-    }
+    public String getNumeroHoras() {return numeroHoras;}
 
-    public void setNumeroHoras(String numeroHoras) {
-        this.numeroHoras = numeroHoras;
-    }
+    public void setNumeroHoras(String numeroHoras) {this.numeroHoras = numeroHoras;}
 
-    public void setId(int id) {
-
-        this.id = id;
-    }
-
+    public void setId(int id) {this.id = id;}
 
     public String getFechaHora() {
         return fechaHora;
@@ -35,4 +28,8 @@ public class Hora  {
     public void setFechaHora(String fechaHora) {
         this.fechaHora = fechaHora;
     }
+
+    public String getDescripcion() {return descripcion;}
+
+    public void setDescripcion(String descripcion) {this.descripcion = descripcion;}
 }

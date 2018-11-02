@@ -1,6 +1,27 @@
 <resources>
-    <string name="app_name">Hora3</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Opciones</string>
     <string name="crero_horas">No hay horas registradas.</string>
     <string name="btnGuardar">\t Guardar</string>
+    <string name="horas_media">Horas Media:</string>
+    <string name="introduce_las_horas">Introduce las horas</string>
+    <string name="introduce_la_fecha">Introduce la fecha</string>
+    <string name="introduce_una_descripcion">Introduce una descripcion</string>
+    <string name="descripcion_hint">Introduce una descripcion de las horas realizadas</string>
+    <string name="app_name">Horas Log</string>
+    <string name="horas_textView">Horas:</string>
+    <string name="fechaHoras_textView">Fecha Horas:</string>
+    <string name="descripcion_textView">Descripción:</string>
+    <string name="precio_horas">Precio Horas:</string>
+    <string name="summary_settings_horas">Activa la opción para ver la media de horas</string>
+    <string name="title_settings_horas">Mostrar la Media de Horas</string>
+    <string name="summary_setting_precio">Activa la opción para ver el precio</string>
+    <string name="title_setting_precio">Mostrar el Precio de las Horas</string>
+    <string name="title_precio_hora_et">Introduce el precio de las horas</string>
+    <string name="title_activity_settings">Opciones</string>
+    <string name="opciones_horas_header">Opciones de las horas</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+
 </resources>

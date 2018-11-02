@@ -1,25 +1,30 @@
 package es.luissachaarancibiabazan.hora3;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
     AdminSqlite adminSqlite;
     RecyclerView recyclerView;
     AdapterHoras adapterHoras;
-    TextView txtHoras, txtFecha, txtMedia;
+    TextView txtHoras, txtFecha, txtMedia, txtPrecio;
+    LinearLayout layoutMedia, layoutPrecio;
+    String spPrecio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +43,32 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
         recyclerView = (RecyclerView)findViewById(R.id.reciclerview);
         txtHoras = (TextView) findViewById(R.id.txtHoras);
         txtFecha = (TextView)findViewById(R.id.txtFecha);
         txtMedia = (TextView)findViewById(R.id.txtMedia);
+        txtPrecio = (TextView)findViewById(R.id.txtPrecio);
+        layoutMedia = (LinearLayout)findViewById(R.id.layoutMedia);
+        layoutPrecio = (LinearLayout)findViewById(R.id.layoutPrecio);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+
+        if (sharedPref.getBoolean("media_horas_sw", true)){
+            layoutMedia.setVisibility(View.VISIBLE);
+        }else{
+            layoutMedia.setVisibility(View.GONE);
+        }
+
+        if (sharedPref.getBoolean("precio_horas_sw", true)){
+            layoutPrecio.setVisibility(View.VISIBLE);
+        }else{
+            layoutPrecio.setVisibility(View.GONE);
+        }
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,9 +80,11 @@ public class MainActivity extends AppCompatActivity {
 
         adminSqlite = new AdminSqlite(this);
 
+        spPrecio = sharedPref.getString("precio_horas_et","");
+        Log.i("precio", spPrecio);
         setMainRecyclerView();
         setMediaHoras();
-
+        setPrecioHoras();
     }
 
     @Override
@@ -74,11 +103,13 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            if (adminSqlite.deleteHoras() != 0){
+            /*if (adminSqlite.deleteHoras() != 0){
                 Snackbar.make(getWindow().getDecorView().getRootView(), "Tabla Borrada", Snackbar.LENGTH_LONG)
                         .show();
                 setMainRecyclerView();
-            }
+            }*/
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -119,7 +150,32 @@ public class MainActivity extends AppCompatActivity {
     public void setMediaHoras(){
         float mediaHoras;
         mediaHoras = adminSqlite.getMediaHoras();
-        txtMedia.setText(String.valueOf(mediaHoras));
+        Log.i("Media", String.valueOf(mediaHoras));
+        if (Float.isNaN(mediaHoras) != true){
+            txtMedia.setText(String.valueOf(mediaHoras));
+        }else{
+            txtMedia.setText("0");
+        }
+
+    }
+    public void setPrecioHoras(){
+        float precioHoras = Float.valueOf(spPrecio);
+        float precioFinal = 0;
+        //float mediaHoras = adminSqlite.getMediaHoras();
+        Cursor c = adminSqlite.getHoras();
+        if (c != null){
+            while (c.moveToNext()) {
+                float horasFloat = c.getFloat(1);
+                precioFinal += horasFloat * precioHoras;
+            }
+        }
+
+        //Log.i("Media", String.valueOf(mediaHoras));
+        if (precioFinal != 0){
+            txtPrecio.setText(String.valueOf(precioFinal));
+        }else{
+            txtPrecio.setText("0");
+        }
 
     }
 

@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import static android.provider.Settings.Global.getString;
+
 public class AdapterHoras extends RecyclerView.Adapter<AdapterHoras.AdapterViewHolder> {
 
     private List<Hora> horaList;
@@ -25,7 +27,6 @@ public class AdapterHoras extends RecyclerView.Adapter<AdapterHoras.AdapterViewH
     public class AdapterViewHolder extends RecyclerView.ViewHolder{
         TextView txtHoras, txtFecha, txtDes;
         LinearLayout linearLayout;
-
         public AdapterViewHolder(View itemView){
             super(itemView);
             //linearLayout = itemView.findViewById(R.id.linear);
@@ -46,12 +47,12 @@ public class AdapterHoras extends RecyclerView.Adapter<AdapterHoras.AdapterViewH
 
     @Override
     public void onBindViewHolder(@NonNull AdapterViewHolder holder, int position) {
-        holder.txtHoras.setText("Horas: " + horaList.get(position).getNumeroHoras());
-        holder.txtFecha.setText("Fecha Horas:  " + horaList.get(position).getFechaHora());
+        holder.txtHoras.setText( horaList.get(position).getNumeroHoras());
+        holder.txtFecha.setText(horaList.get(position).getFechaHora());
         if (horaList.get(position).getDescripcion() != null){
-            holder.txtDes.setText("Descripción:  " + horaList.get(position).getDescripcion());
+            holder.txtDes.setText(horaList.get(position).getDescripcion());
         }else{
-            holder.txtDes.setText("Descripción:  " );
+            holder.txtDes.setText("");
         }
         //String descSql = horaList.get(position).getDescripcion();
         //notifyDataSetChanged();

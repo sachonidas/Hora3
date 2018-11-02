@@ -15,7 +15,7 @@ public class AdminSqlite extends SQLiteOpenHelper {
     private static final String SQLDELETE = "DROP TABLE IF EXISTS \"hora\"";
 
     private static final String TABLA = "hora";
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
     private SQLiteDatabase db;
 
     public static final String HORAS = "numeroHoras";

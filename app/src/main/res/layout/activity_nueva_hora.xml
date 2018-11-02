@@ -12,7 +12,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -22,7 +22,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
-                android:text="Introduce las horas"
+                android:text="@string/introduce_las_horas"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="36dp"
-                android:text="Introduce la fecha"
+                android:text="@string/introduce_la_fecha"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +75,7 @@
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="36dp"
-                android:text="Introduce una descripcion"
+                android:text="@string/introduce_una_descripcion"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +89,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="36dp"
                 android:ems="10"
-                android:hint="Introduce una descripcion de las horas realizadas"
+                android:hint="@string/descripcion_hint"
                 android:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

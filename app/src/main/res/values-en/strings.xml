@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hours Log</string>
+    <string name="descripcion_hint">Type a description of the hours</string>
+    <string name="introduce_una_descripcion">Enter a description</string>
+    <string name="introduce_la_fecha">Enter a date</string>
+    <string name="introduce_las_horas">Enter the hours</string>
+    <string name="horas_media">Average hours:</string>
+    <string name="btnGuardar">"  Save"</string>
+    <string name="crero_horas">There are no recorded hours.</string>
+    <string name="action_settings">Settings</string>
+    <string name="horas_textView">Hours: </string>
+    <string name="fechaHoras_textView">Hours Date:  </string>
+    <string name="descripcion_textView">Description: </string>
+    <string name="precio_horas">Price Hours:</string>
+    <string name="title_settings_horas">Show the average of hours</string>
+    <string name="summary_settings_horas">Turn on this option to show the average of hours</string>
+    <string name="summary_setting_precio">Turn on this option to show the price</string>
+    <string name="title_setting_precio">Show the price of the hours</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_precio_hora_et">Enter the price of the hours</string>
+    <string name="opciones_horas_header">Options of hours</string>
+</resources>

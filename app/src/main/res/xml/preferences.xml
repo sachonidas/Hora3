@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android.support.v7.preference.SwitchPreferenceCompat="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="switch_preference_1"
+        android:summary="Activa la opción para ver la media de horas"
+        android:title="Mostrar la Media de Horas" />
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="switch_preference_2"
+        android:summary="Activa la opción para ver el precio"
+        android:title="Mostrar el Precio de las Horas" />
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:key="edit_text_preference_1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Introduce el precio de las horas" />
+</PreferenceScreen>

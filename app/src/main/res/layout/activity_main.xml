@@ -14,14 +14,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            app:title="@string/app_name"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseParallaxMultiplier="1.0"></android.support.v7.widget.Toolbar>
+                app:layout_collapseMode="pin"
+                app:layout_collapseParallaxMultiplier="1.0"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,23 +40,53 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:layout_weight="1">
 
-                        <TextView
-                            android:id="@+id/textView12"
+                        <LinearLayout
+                            android:id="@+id/layoutMedia"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="Horas Media: "
-                            android:textAlignment="center" />
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/textView12"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/horas_media"
+                                android:textAlignment="center" />
 
-                        <TextView
-                            android:id="@+id/txtMedia"
+                            <TextView
+                                android:id="@+id/txtMedia"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textAlignment="center" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/layoutPrecio"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="TextView"
-                            android:textAlignment="center" />
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/txtHorasPre"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/precio_horas"
+                                android:textAlignment="center" />
+
+                            <TextView
+                                android:id="@+id/txtPrecio"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textAlignment="center" />
+
+                        </LinearLayout>
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
 
@@ -64,6 +96,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
@@ -73,19 +106,33 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include layout="@layout/content_main"/>
+            <include layout="@layout/content_main" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
 
     <android.support.design.widget.FloatingActionButton
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:src="@drawable/ic_add_black_24dp"
-        android:layout_gravity="bottom|end"
         android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:clickable="true"
-        android:focusable="true" />
+        android:focusable="true"
+        app:layout_anchorGravity="bottom|right|end"
+        app:srcCompat="@drawable/ic_add_black_24dp" />
+
+    <!--<android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_anchorGravity="bottom|left|end"
+        app:srcCompat="@drawable/ic_add_black_24dp"
+        tools:srcCompat="@drawable/ic_build_black_24dp" />-->
 
 </android.support.design.widget.CoordinatorLayout>

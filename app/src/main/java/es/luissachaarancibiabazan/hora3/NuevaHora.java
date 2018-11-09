@@ -25,6 +25,7 @@ public class NuevaHora extends AppCompatActivity {
     String horaString, fechaString, descString;
     DatePickerDialog datePickerDialog;
     int year, month, dayOfMonth;
+    int semanaActual, numSemana, mesActual;
     Calendar calendar;
 
     @Override
@@ -72,7 +73,7 @@ public class NuevaHora extends AppCompatActivity {
                     horaString = etHoras.getText().toString();
                     descString = etDesc.getText().toString();
                     Toast.makeText(NuevaHora.this, "Horas: "+horaString+"\n fecha: "+fechaString+"\n descripcion: "+descString, Toast.LENGTH_SHORT).show();
-                    adminSqlite.setNewHoras(horaString, fechaString, descString);
+                    adminSqlite.setNewHoras(horaString, fechaString, descString, String.valueOf(year), String.valueOf(month), String.valueOf(dayOfMonth));
                     finish();
                 }
             }

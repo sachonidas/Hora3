@@ -11,16 +11,19 @@ import java.sql.Date;
 
 public class AdminSqlite extends SQLiteOpenHelper {
 
-    private static final String SQLCREATE = "CREATE TABLE \"hora\" ( `id` integer NOT NULL PRIMARY KEY AUTOINCREMENT, `numeroHoras` real NOT NULL, `fechaHoras` datetime NOT NULL, `descripcion` TEXT )";
+    private static final String SQLCREATE = "CREATE TABLE \"hora\" ( `id` integer NOT NULL PRIMARY KEY AUTOINCREMENT, `numeroHoras` real NOT NULL, `fechaHoras` datetime NOT NULL, `descripcion` TEXT, `dia` TEXT,`mes` TEXT,`año` TEXT)";
     private static final String SQLDELETE = "DROP TABLE IF EXISTS \"hora\"";
 
     private static final String TABLA = "hora";
-    private static final int VERSION = 2;
+    private static final int VERSION = 3;
     private SQLiteDatabase db;
 
     public static final String HORAS = "numeroHoras";
     public static final String FECHA_HORAS = "fechaHoras";
     public static final String DESCRIPCION = "descripcion";
+    public static final String AÑO = "año";
+    public static final String MES = "mes";
+    public static final String DIA= "dia";
 
 
     public AdminSqlite(@Nullable Context context) {
@@ -39,14 +42,17 @@ public class AdminSqlite extends SQLiteOpenHelper {
 
     }
 
-    public void setNewHoras(String horas, String fechaHoras, String descripcion){
+    public void setNewHoras(String horas, String fechaHoras, String descripcion, String año, String mes, String dia){
         db = getWritableDatabase();
-        String[] columns = {HORAS, FECHA_HORAS, DESCRIPCION};
+        String[] columns = {HORAS, FECHA_HORAS, DESCRIPCION, AÑO, MES, DIA};
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(HORAS, horas);
         contentValues.put(FECHA_HORAS, fechaHoras);
         contentValues.put(DESCRIPCION, descripcion);
+        contentValues.put(AÑO, año);
+        contentValues.put(MES, mes);
+        contentValues.put(DIA, dia);
         db.insert(TABLA, null,contentValues);
     }
 

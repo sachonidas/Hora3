@@ -19,6 +19,7 @@
     <string name="title_precio_hora_et">Introduce el precio de las horas</string>
     <string name="title_activity_settings">Opciones</string>
     <string name="opciones_horas_header">Opciones de las horas</string>
+    <string name="title_activity_main2">Main2Activity</string>
 
     <!-- Strings related to Settings -->
 
